@@ -1,0 +1,88 @@
+.auth-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.auth-split--mobile {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.auth-split__brand {
+  background: var(--color-night);
+  padding: 56px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #c9d2cc;
+}
+
+.auth-split__brand-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-split__brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-on-dark);
+  font-size: 20px;
+}
+
+.auth-split__heading {
+  font-size: 34px;
+  line-height: 1.15;
+  color: var(--color-on-dark);
+  margin: 0 0 18px;
+}
+
+.auth-split__body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-on-dark-muted);
+  max-width: 400px;
+}
+
+.auth-split__pills {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.auth-split__pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 13px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #c9d2cc;
+}
+
+.auth-split__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.auth-split__trust {
+  font-size: 13px;
+  color: var(--color-on-dark-faint);
+}
+
+.auth-split__form {
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.auth-split__form-inner {
+  width: 100%;
+  max-width: 380px;
+}
