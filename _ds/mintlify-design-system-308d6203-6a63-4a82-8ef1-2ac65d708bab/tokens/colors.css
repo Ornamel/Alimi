@@ -1,0 +1,48 @@
+/* Mintlify Design System — Color tokens
+   Source: brand guideline notes (mintlify.com homepage, /startups, /pricing, /docs/components/tabs) */
+:root {
+  /* Brand & Accent */
+  --color-brand-green: #00D9B5;
+  --color-brand-green-deep: #00B89A;
+  --color-brand-green-soft: #E3FBF6;
+  --color-brand-tag: #3772CF;
+  --color-brand-annotate: #1FAE7D;
+  --color-brand-warn: #F5A623;
+  --color-brand-error: #E5484D;
+  --color-testimonial-orange: #FF6B4A;
+
+  /* Surface */
+  --color-canvas: #FFFFFF;
+  --color-canvas-dark: #0A0A0A;
+  --color-surface: #F6F6F7;
+  --color-surface-soft: #FAFAFA;
+  --color-surface-code: #0D1117;
+  --color-hairline: #E6E6E8;
+  --color-hairline-soft: #F0F0F1;
+  --color-hairline-dark: rgba(255, 255, 255, 0.12);
+
+  /* Hero atmospheric gradients */
+  --color-hero-sky-from: #BFE3F7;
+  --color-hero-sky-to: #FDF6E9;
+  --color-hero-dark-from: #063A38;
+  --color-hero-dark-to: #00D9B5;
+
+  /* Text */
+  --color-ink: #0A0A0A;
+  --color-charcoal: #1A1A1E;
+  --color-slate: #52525B;
+  --color-steel: #71717A;
+  --color-stone: #A1A1AA;
+  --color-muted: #C4C4C8;
+  --color-on-dark: #FFFFFF;
+  --color-on-dark-muted: rgba(255, 255, 255, 0.64);
+
+  /* Core semantic aliases */
+  --color-primary: #0A0A0A;
+  --color-on-primary: #FFFFFF;
+
+  /* Badge tag background (rgba tint of brand-tag) */
+  --color-badge-tag-bg: rgba(55, 114, 207, 0.15);
+  /* Featured pricing tier glow tint */
+  --color-brand-tint-shadow: rgba(0, 217, 181, 0.08);
+}
