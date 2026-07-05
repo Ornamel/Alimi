@@ -16,13 +16,13 @@ const FEATURES = [
   },
   {
     title: 'Entry point tracking',
-    body: 'QR codes, links, and embeds each carry a source label — you always know where a lead came from.',
+    body: 'QR codes, links, and embeds each carry a source label -- you always know where a lead came from.',
     bg: 'rgba(47,107,236,0.14)',
     icon: <EntryIcon size={20} color="#5b90f5" />,
   },
   {
     title: 'Intelligence briefings',
-    body: 'Every qualified lead arrives with intent signals, objections, and your next three moves — ready to act on.',
+    body: 'Every qualified lead arrives with intent signals, objections, and your next three moves -- ready to act on.',
     bg: 'rgba(245,162,75,0.16)',
     icon: <BriefingIcon size={20} color="#f5a24b" />,
   },
@@ -34,13 +34,13 @@ const FEATURES = [
   },
   {
     title: 'Trained knowledge base',
-    body: 'Upload catalogues, pricing, or FAQs — your agent answers accurately from day one.',
+    body: 'Upload catalogues, pricing, or FAQs -- your agent answers accurately from day one.',
     bg: 'rgba(245,162,75,0.16)',
     icon: <CalendarIcon size={20} color="#f5a24b" />,
   },
   {
     title: 'Real-time analytics',
-    body: 'Track the full funnel — from first click to closed deal — and see which sources actually convert.',
+    body: 'Track the full funnel -- from first click to closed deal -- and see which sources actually convert.',
     bg: 'rgba(47,107,236,0.14)',
     icon: <ArrowRightIcon size={20} color="#5b90f5" />,
   },
@@ -49,15 +49,15 @@ const FEATURES = [
 const HOW_IT_WORKS = [
   {
     title: 'Build your agent',
-    body: 'Describe your business, connect WhatsApp & Email, and upload the pricing sheets or FAQs it should know. Takes under 30 minutes — no code.',
+    body: 'Describe your business, connect WhatsApp & Email, and upload the pricing sheets or FAQs it should know. Takes under 30 minutes -- no code.',
   },
   {
     title: "It works while you don't",
-    body: 'Your agent answers instantly, qualifies interest, and books meetings — 24/7, on the channels your customers already use.',
+    body: 'Your agent answers instantly, qualifies interest, and books meetings -- 24/7, on the channels your customers already use.',
   },
   {
     title: 'You step in to close',
-    body: 'The moment a lead is ready, you get a full intelligence briefing — no transcripts to read. Take over, or let the handoff speak for itself.',
+    body: 'The moment a lead is ready, you get a full intelligence briefing -- no transcripts to read. Take over, or let the handoff speak for itself.',
   },
 ];
 
@@ -65,9 +65,10 @@ export function LandingPage() {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [annual, setAnnual] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const proPrice = annual ? '₦36,000' : '₦45,000';
-  const proSub = annual ? 'billed ₦432,000/yr' : 'billed monthly · cancel anytime';
+  const proPrice = annual ? 'NGN 39k' : 'NGN 49k';
+  const proSub = annual ? 'billed NGN 468k/yr' : 'billed monthly, cancel anytime';
 
   function scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -81,27 +82,42 @@ export function LandingPage() {
           <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 20 }}>Alimi</span>
         </div>
         <div className="landing__nav-links">
-          {!isMobile && (
+          {!isMobile ? (
             <>
-              <button className="landing__nav-link" onClick={() => scrollTo('features')}>Product</button>
-              <button className="landing__nav-link" onClick={() => scrollTo('pricing')}>Pricing</button>
-              <button className="landing__nav-link" onClick={() => scrollTo('customers')}>Customers</button>
+              <button className="landing__nav-link" onClick={() => navigate('/product')}>Product</button>
+              <button className="landing__nav-link" onClick={() => navigate('/pricing')}>Pricing</button>
+              <button className="landing__nav-link" onClick={() => navigate('/customers')}>Customers</button>
+              <button className="landing__nav-link" onClick={() => navigate('/signin')} style={{ color: 'var(--color-on-dark)', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                Sign in
+              </button>
+              <Button variant="accent" size="sm" onClick={() => navigate('/signup')}>
+                Get started free
+              </Button>
             </>
+          ) : (
+            <button className="landing__menu-button" onClick={() => setMobileNavOpen((open) => !open)} aria-expanded={mobileNavOpen} aria-label="Toggle navigation">
+              <span />
+              <span />
+              <span />
+            </button>
           )}
-          <button className="landing__nav-link" onClick={() => navigate('/signin')} style={{ color: 'var(--color-on-dark)', fontWeight: 600, whiteSpace: 'nowrap' }}>
-            Sign in
-          </button>
-          <Button variant="accent" size="sm" onClick={() => navigate('/signup')}>
-            Get started free
-          </Button>
         </div>
       </div>
+      {isMobile && mobileNavOpen && (
+        <div className="landing__mobile-drawer">
+          <button onClick={() => navigate('/product')}>Product</button>
+          <button onClick={() => navigate('/pricing')}>Pricing</button>
+          <button onClick={() => navigate('/customers')}>Customers</button>
+          <button onClick={() => navigate('/signin')}>Sign in</button>
+          <Button variant="accent" fullWidth onClick={() => navigate('/signup')}>Get started free</Button>
+        </div>
+      )}
 
       <div className="landing__hero">
         <div>
           <div className="landing__hero-badge">
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--color-brand)' }} />
-            The 90/10 model — AI does 90%, you close the 10%
+            The 90/10 model -- AI does 90%, you close the 10%
           </div>
           <h1 className="landing__hero-title">
             Your AI closer
@@ -109,7 +125,7 @@ export function LandingPage() {
             starts here.
           </h1>
           <p className="landing__hero-body">
-            Set up your Alimi agent in under 30 minutes — no code, no tech team. Autonomous agents that hold real
+            Set up your Alimi agent in under 30 minutes -- no code, no tech team. Autonomous agents that hold real
             sales conversations on WhatsApp &amp; Email, 24/7.
           </p>
           <div className="landing__hero-ctas">
@@ -131,21 +147,21 @@ export function LandingPage() {
         <div className="landing__visual">
           <div className="landing__visual-header">
             <span className="live-dot" />
-            Live conversation · YouTube lead
+            Live conversation | YouTube lead
           </div>
           <div className="landing__visual-chat">
-            <div className="landing__bubble landing__bubble--them">Hi 👋 I saw your Lekki penthouse tour. Is the 3-bed still available?</div>
+            <div className="landing__bubble landing__bubble--them">Hi, I saw your Lekki penthouse tour. Is the 3-bed still available?</div>
             <div className="landing__bubble landing__bubble--us">It's the north-facing unit with the wraparound terrace. Want to see it this weekend?</div>
-            <div className="landing__bubble landing__bubble--them">Saturday 10am works 🙌</div>
+            <div className="landing__bubble landing__bubble--them">Saturday 10am works</div>
           </div>
           <div className="landing__briefing-preview">
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
               <BriefingIcon size={14} color="var(--color-brand)" />
               <span style={{ color: 'var(--color-brand)', fontSize: 12, fontWeight: 700, letterSpacing: '0.04em' }}>
-                INTELLIGENCE BRIEFING · JUST NOW
+                INTELLIGENCE BRIEFING | JUST NOW
               </span>
             </div>
-            <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 10 }}>Chioma is ready to close — viewing booked.</div>
+            <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 10 }}>Chioma is ready to close -- viewing booked.</div>
             <div style={{ display: 'flex', gap: 16 }}>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 10, color: 'var(--color-on-dark-faint)', marginBottom: 3 }}>Purchase</div>
@@ -176,7 +192,7 @@ export function LandingPage() {
       <div id="how-it-works" className="landing__section">
         <div className="landing__section-head">
           <div className="landing__eyebrow">How it works</div>
-          <h2 className="landing__section-title">From first message to closed deal — three steps.</h2>
+          <h2 className="landing__section-title">From first message to closed deal -- three steps.</h2>
         </div>
         <div className="landing__grid-3">
           {HOW_IT_WORKS.map((step, i) => (
@@ -224,18 +240,19 @@ export function LandingPage() {
 
           <div className="landing__pricing-grid">
             <div className="landing__price-card">
-              <h3 style={{ fontSize: 19 }}>Free</h3>
-              <p style={{ margin: '8px 0 0', fontSize: '13.5px', color: 'var(--color-steel)', lineHeight: 1.5 }}>Try Alimi with your first agent.</p>
+              <h3 style={{ fontSize: 19 }}>Starter</h3>
+              <p style={{ margin: '8px 0 0', fontSize: '13.5px', color: 'var(--color-steel)', lineHeight: 1.5 }}>For solo founders and creators.</p>
               <div style={{ margin: '22px 0 20px' }}>
-                <span className="landing__price-amount">₦0</span>
+                <span className="landing__price-amount">NGN 29k</span>
                 <span style={{ color: 'var(--color-steel)', fontSize: 14 }}>/mo</span>
               </div>
-              <Button variant="secondary" fullWidth onClick={() => navigate('/signup')}>Get started free</Button>
+              <Button variant="secondary" fullWidth onClick={() => navigate('/signup')}>Start free trial</Button>
               <div className="landing__price-feature-list">
                 <div className="landing__price-feature">✓ 1 AI agent</div>
-                <div className="landing__price-feature">✓ 1 channel — WhatsApp or Email</div>
-                <div className="landing__price-feature">✓ Up to 50 conversations/mo</div>
-                <div className="landing__price-feature">✓ Community support</div>
+                <div className="landing__price-feature">✓ WhatsApp channel</div>
+                <div className="landing__price-feature">✓ 250 conversations/mo</div>
+                <div className="landing__price-feature">✓ Intelligence briefings</div>
+                <div className="landing__price-feature">✓ Basic analytics</div>
               </div>
             </div>
 
@@ -243,41 +260,46 @@ export function LandingPage() {
               <Badge tone="discount" style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', whiteSpace: 'nowrap' }}>
                 MOST POPULAR
               </Badge>
-              <h3 style={{ fontSize: 19 }}>Pro</h3>
-              <p style={{ margin: '8px 0 0', fontSize: '13.5px', color: 'var(--color-steel)', lineHeight: 1.5 }}>For teams closing deals every day.</p>
+              <h3 style={{ fontSize: 19 }}>Growth</h3>
+              <p style={{ margin: '8px 0 0', fontSize: '13.5px', color: 'var(--color-steel)', lineHeight: 1.5 }}>For growing businesses.</p>
               <div style={{ margin: '22px 0 4px' }}>
                 <span className="landing__price-amount">{proPrice}</span>
                 <span style={{ color: 'var(--color-steel)', fontSize: 14 }}>/mo</span>
               </div>
               <div style={{ fontSize: '12.5px', color: 'var(--color-brand-deep)', marginBottom: 20 }}>{proSub}</div>
-              <Button variant="primary" fullWidth onClick={() => navigate('/signup')}>Get started free</Button>
+              <Button variant="primary" fullWidth onClick={() => navigate('/signup')}>Start free trial</Button>
               <div className="landing__price-feature-list">
                 <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ 3 AI agents</div>
-                <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ WhatsApp + Email, unlimited conversations</div>
-                <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ Intelligence briefings &amp; live takeover</div>
-                <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ Full analytics &amp; entry-point tracking</div>
-                <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ Priority support</div>
+                <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ WhatsApp + Email</div>
+                <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ 2,500 conversations/mo</div>
+                <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ Human take-over</div>
+                <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ Full analytics &amp; sources</div>
+                <div className="landing__price-feature" style={{ color: 'var(--color-ink)' }}>✓ QR &amp; embed widgets</div>
               </div>
             </div>
 
             <div className="landing__price-card">
-              <h3 style={{ fontSize: 19 }}>Agency</h3>
-              <p style={{ margin: '8px 0 0', fontSize: '13.5px', color: 'var(--color-steel)', lineHeight: 1.5 }}>For agencies managing multiple clients.</p>
+              <h3 style={{ fontSize: 19 }}>Scale</h3>
+              <p style={{ margin: '8px 0 0', fontSize: '13.5px', color: 'var(--color-steel)', lineHeight: 1.5 }}>For agencies and teams.</p>
               <div style={{ margin: '22px 0 20px' }}>
-                <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 30 }}>Custom</span>
+                <span className="landing__price-amount">NGN 249k</span>
+                <span style={{ color: 'var(--color-steel)', fontSize: 14 }}>/mo</span>
               </div>
               <Button
                 variant="secondary"
                 fullWidth
-                onClick={() => alert('Thanks — our team will reach out within one business day.')}
+                onClick={() => alert('Thanks -- our team will reach out within one business day.')}
               >
-                Contact sales
+                Talk to sales
               </Button>
               <div className="landing__price-feature-list">
                 <div className="landing__price-feature">✓ Unlimited agents</div>
+                <div className="landing__price-feature">✓ All channels</div>
+                <div className="landing__price-feature">✓ 15,000 conversations/mo</div>
                 <div className="landing__price-feature">✓ Multi-client workspaces</div>
-                <div className="landing__price-feature">✓ Dedicated onboarding</div>
-                <div className="landing__price-feature">✓ SLA &amp; priority support</div>
+                <div className="landing__price-feature">✓ Team roles &amp; permissions</div>
+                <div className="landing__price-feature">✓ API &amp; webhooks</div>
+                <div className="landing__price-feature">✓ Priority support &amp; SLA</div>
               </div>
             </div>
           </div>
@@ -370,7 +392,7 @@ export function LandingPage() {
             <div>
               <div className="landing__footer-col-title">Product</div>
               <div className="landing__footer-links">
-                <button className="landing__footer-link" onClick={() => scrollTo('features')}>Features</button>
+                <button className="landing__footer-link" onClick={() => navigate('/product')}>Features</button>
                 <button className="landing__footer-link" onClick={() => scrollTo('how-it-works')}>How it works</button>
                 <button className="landing__footer-link" onClick={() => navigate('/demo')}>Watch demo</button>
               </div>
@@ -378,7 +400,7 @@ export function LandingPage() {
             <div>
               <div className="landing__footer-col-title">Company</div>
               <div className="landing__footer-links">
-                <button className="landing__footer-link" onClick={() => scrollTo('customers')}>Customers</button>
+                <button className="landing__footer-link" onClick={() => navigate('/customers')}>Customers</button>
                 <button className="landing__footer-link" onClick={() => navigate('/signup')}>Get started</button>
               </div>
             </div>
@@ -386,7 +408,7 @@ export function LandingPage() {
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="landing__footer-bottom">
-            <span>© 2026 Alimi. All rights reserved.</span>
+            <span>Â© 2026 Alimi. All rights reserved.</span>
             <span>Trusted by 200+ businesses across Lagos, Accra, and Nairobi.</span>
           </div>
         </div>

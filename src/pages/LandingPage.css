@@ -51,6 +51,20 @@
   gap: 28px;
 }
 
+.landing__brand-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-on-dark);
+  background: none;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+}
+
 .landing--mobile .landing__nav-links {
   gap: 12px;
 }
@@ -65,6 +79,49 @@
   text-decoration: none;
   background: none;
   border: none;
+}
+
+.landing__nav-link--active {
+  color: var(--color-brand);
+  font-weight: 700;
+}
+
+.landing__menu-button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.landing__menu-button span {
+  width: 18px;
+  height: 2px;
+  background: var(--color-on-dark);
+  border-radius: 999px;
+}
+
+.landing__mobile-drawer {
+  padding: 10px 20px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.landing__mobile-drawer > button {
+  color: var(--color-on-dark);
+  font-size: 15px;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 12px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Hero */
@@ -427,4 +484,60 @@
   border: none;
   text-align: left;
   cursor: pointer;
+}
+
+.marketing-page__hero {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 74px 32px 52px;
+  text-align: center;
+}
+
+.marketing-page__hero h1 {
+  color: var(--color-on-dark);
+  font-size: 48px;
+  line-height: 1.08;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.marketing-page__hero p {
+  color: var(--color-on-dark-muted);
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 18px auto 0;
+}
+
+.marketing-page__card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 24px;
+}
+
+.marketing-page__card h3 {
+  color: var(--color-on-dark);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.marketing-page__card p,
+.marketing-page__card li {
+  color: var(--color-on-dark-muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.marketing-page__list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.landing--mobile .marketing-page__hero h1 {
+  font-size: 36px;
 }

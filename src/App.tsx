@@ -23,6 +23,7 @@ import { SettingsPage } from './pages/SettingsPage';
 import { StatesPage } from './pages/StatesPage';
 import { WatchDemoPage } from './pages/WatchDemoPage';
 import { MobileBriefingDemoPage } from './pages/MobileBriefingDemoPage';
+import { CustomersPage, PricingPage, ProductPage } from './pages/MarketingPages';
 
 export default function App() {
   return (
@@ -36,6 +37,9 @@ export default function App() {
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/demo" element={<WatchDemoPage />} />
             <Route path="/demo/briefing" element={<MobileBriefingDemoPage />} />
+            <Route path="/product" element={<ProductPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/customers" element={<CustomersPage />} />
             <Route path="/states" element={<StatesPage />} />
 
             <Route

@@ -850,14 +850,33 @@
           <div style="width: 30px; height: 30px; border-radius: 9px; background: #16C47F; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.2 3.4A.6.6 0 0 1 4.8 19V5.5Z" fill="#07130D"></path><path d="M9 9.2l2.2 2.4L15.4 7" stroke="#16C47F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <span style="font-family: 'Space Grotesk'; font-weight: 600; color: #F5F2EB; font-size: 20px;">Alimi</span>
         </div>
+        <sc-if value="{{ notIsMobile }}" hint-placeholder-val="{{ true }}">
         <div style="display: flex; align-items: center; gap: 28px;">
-          <a href="#features" style="color: #9FB0A6; font-size: 14px; text-decoration: none;">Product</a>
-          <a href="#pricing" style="color: #9FB0A6; font-size: 14px; text-decoration: none;">Pricing</a>
-          <a href="#customers" style="color: #9FB0A6; font-size: 14px; text-decoration: none;">Customers</a>
+          <button onClick="{{ goProduct }}" style="{{ navProductStyle }}">Product</button>
+          <button onClick="{{ goPricingPage }}" style="{{ navPricingStyle }}">Pricing</button>
+          <button onClick="{{ goCustomersPage }}" style="{{ navCustomersStyle }}">Customers</button>
           <button onClick="{{ goSignin }}" style="background: none; border: none; color: #F5F2EB; font-size: 14px; font-weight: 600; cursor: pointer;">Sign in</button>
           <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="accent-green" on-click="{{ goSignup }}" hint-size="auto,40px">Get started free</x-import>
         </div>
+        </sc-if>
+
+        <sc-if value="{{ isMobile }}">
+        <button onClick="{{ toggleMobileNav }}" style="background: none; border: none; color: #F5F2EB; padding: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#F5F2EB" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+        </sc-if>
       </div>
+
+      <!-- mobile nav drawer -->
+      <sc-if value="{{ mobileNavOpen }}">
+        <div style="background: #0C1712; border-top: 1px solid rgba(255,255,255,0.08); padding: 10px 24px 20px; display: flex; flex-direction: column; gap: 4px;">
+          <button onClick="{{ goProduct }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Product</button>
+          <button onClick="{{ goPricingPage }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Pricing</button>
+          <button onClick="{{ goCustomersPage }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Customers</button>
+          <button onClick="{{ goSignin }}" style="background: none; border: none; color: #F5F2EB; font-size: 15px; font-weight: 600; cursor: pointer; text-align: left; padding: 12px 4px;">Sign in</button>
+          <button onClick="{{ goSignup }}" style="margin-top: 8px; background: #16C47F; color: #07130D; border: none; padding: 13px; border-radius: 999px; font-size: 15px; font-weight: 600; cursor: pointer;">Get started free</button>
+        </div>
+      </sc-if>
 
       <!-- hero -->
       <div style="{{ gridHero }}">
@@ -943,35 +962,47 @@
             <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 32px; line-height: 1.2; margin: 0; color: #F5F2EB; letter-spacing: -0.01em;">Built for real sales conversations, not chatbot scripts.</h2>
           </div>
           <div style="{{ gridFeatures }}">
-            <div style="padding: 24px;">
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
               <div style="width: 40px; height: 40px; border-radius: 11px; background: #E7F3EC1A; background: rgba(22,196,127,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C7 2 3 5.8 3 10.5c0 3 1.8 5.6 4.5 7.1L7 22l4.2-2.2c.3 0 .5.1.8.1 5 0 9-3.8 9-8.5S17 2 12 2Z" stroke="#16C47F" stroke-width="1.8"></path></svg></div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Native WhatsApp &amp; Email</h3>
               <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">No app to download. Your agent meets customers where they already are.</p>
             </div>
-            <div style="padding: 24px;">
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
               <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(47,107,236,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 15l6-6M11 6l1-1a4 4 0 0 1 6 6l-1 1M13 18l-1 1a4 4 0 0 1-6-6l1-1" stroke="#5B90F5" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Entry point tracking</h3>
               <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">QR codes, links, and embeds each carry a source label — you always know where a lead came from.</p>
             </div>
-            <div style="padding: 24px;">
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
               <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(245,162,75,0.16); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 3l-1.5 8H17l-6 10 1.5-8H6l7-10Z" stroke="#F5A24B" stroke-width="1.7" stroke-linejoin="round"></path></svg></div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Intelligence briefings</h3>
               <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">Every qualified lead arrives with intent signals, objections, and your next three moves — ready to act on.</p>
             </div>
-            <div style="padding: 24px;">
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
               <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(22,196,127,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v9m0 0l-3.5-3.5M12 12l3.5-3.5M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" stroke="#16C47F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Live takeover</h3>
               <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">Step into any conversation at any moment. The agent hands back cleanly when you're done.</p>
             </div>
-            <div style="padding: 24px;">
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
               <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(245,162,75,0.16); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="#F5A24B" stroke-width="1.7" stroke-linejoin="round"></path><path d="M9 12h6M9 16h6" stroke="#F5A24B" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Trained knowledge base</h3>
               <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">Upload catalogues, pricing, or FAQs — your agent answers accurately from day one.</p>
             </div>
-            <div style="padding: 24px;">
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
               <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(47,107,236,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 20V4M4 20h16M8 16l3.5-4 3 2.5L20 8" stroke="#5B90F5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Real-time analytics</h3>
               <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">Track the full funnel — from first click to closed deal — and see which sources actually convert.</p>
+            </div>
             </div>
           </div>
         </div>
@@ -994,50 +1025,56 @@
             <!-- FREE -->
             <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="pricing" hint-size="auto,auto">
               <div style="display: flex; flex-direction: column;">
-                <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 19px; margin: 0; color: #12211B;">Free</h3>
-                <p style="margin: 8px 0 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">Try Alimi with your first agent.</p>
-                <div style="margin: 22px 0 20px;"><span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 38px; color: #12211B;">₦0</span><span style="color: #6E7A73; font-size: 14px;">/mo</span></div>
-                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="secondary" on-click="{{ goSignup }}" hint-size="100%,44px" dc-props="{{ fullWidthBtn }}">Get started free</x-import>
+                <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 19px; margin: 0; color: #12211B;">Starter</h3>
+                <p style="margin: 8px 0 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">For solo founders &amp; creators.</p>
+                <div style="margin: 22px 0 20px;"><span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 38px; color: #12211B;">₦29</span><span style="color: #6E7A73; font-size: 14px;">/mo</span></div>
+                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="secondary" on-click="{{ goSignup }}" hint-size="100%,44px" dc-props="{{ fullWidthBtn }}">Start free trial</x-import>
                 <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #EAE5D9; padding-top: 22px;">
                   <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>1 AI agent</div>
-                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>1 channel — WhatsApp or Email</div>
-                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Up to 50 conversations/mo</div>
-                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Community support</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>WhatsApp channel</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>250 conversations/mo</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Intelligence Briefings</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Basic analytics</div>
                 </div>
               </div>
             </x-import>
 
-            <!-- PRO -->
+            <!-- GROWTH -->
             <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="pricing-featured" hint-size="auto,auto">
               <div style="position: relative; display: flex; flex-direction: column;">
                 <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Badge" variant="discount" style="position:absolute;top:-42px;left:50%;transform:translateX(-50%);white-space:nowrap;" hint-size="auto,22px">MOST POPULAR</x-import>
-                <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 19px; margin: 0; color: #12211B;">Pro</h3>
-                <p style="margin: 8px 0 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">For teams closing deals every day.</p>
+                <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 19px; margin: 0; color: #12211B;">Growth</h3>
+                <p style="margin: 8px 0 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">For growing businesses.</p>
                 <div style="margin: 22px 0 4px;"><span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 38px; color: #12211B;">{{ proPrice }}</span><span style="color: #6E7A73; font-size: 14px;">/mo</span></div>
                 <div style="font-size: 12.5px; color: #0B7A4B; margin-bottom: 20px;">{{ proSub }}</div>
-                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="primary" on-click="{{ goSignup }}" hint-size="100%,44px" dc-props="{{ fullWidthBtn }}">Get started free</x-import>
+                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="primary" on-click="{{ goSignup }}" hint-size="100%,44px" dc-props="{{ fullWidthBtn }}">Start free trial</x-import>
                 <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #EAE5D9; padding-top: 22px;">
                   <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>3 AI agents</div>
-                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>WhatsApp + Email, unlimited conversations</div>
-                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Intelligence briefings &amp; live takeover</div>
-                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Full analytics &amp; entry-point tracking</div>
-                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Priority support</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>WhatsApp + Email</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>2,500 conversations/mo</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Human take-over</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Full analytics &amp; sources</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Custom success events</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>QR &amp; embed widgets</div>
                 </div>
               </div>
             </x-import>
 
-            <!-- AGENCY -->
+            <!-- SCALE -->
             <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="pricing" hint-size="auto,auto">
               <div style="display: flex; flex-direction: column;">
-                <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 19px; margin: 0; color: #12211B;">Agency</h3>
-                <p style="margin: 8px 0 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">For agencies managing multiple clients.</p>
-                <div style="margin: 22px 0 20px;"><span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 30px; color: #12211B;">Custom</span></div>
-                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="secondary" on-click="{{ contactSales }}" hint-size="100%,44px" dc-props="{{ fullWidthBtn }}">Contact sales</x-import>
+                <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 19px; margin: 0; color: #12211B;">Scale</h3>
+                <p style="margin: 8px 0 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">For agencies &amp; teams.</p>
+                <div style="margin: 22px 0 20px;"><span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 38px; color: #12211B;">₦249</span><span style="color: #6E7A73; font-size: 14px;">/mo</span></div>
+                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="secondary" on-click="{{ contactSales }}" hint-size="100%,44px" dc-props="{{ fullWidthBtn }}">Talk to sales</x-import>
                 <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #EAE5D9; padding-top: 22px;">
                   <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Unlimited agents</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>All channels</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>15,000 conversations/mo</div>
                   <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Multi-client workspaces</div>
-                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Dedicated onboarding</div>
-                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>SLA &amp; priority support</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Team roles &amp; permissions</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>API &amp; webhooks</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Priority support &amp; SLA</div>
                 </div>
               </div>
             </x-import>
@@ -1053,26 +1090,26 @@
             <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 32px; line-height: 1.2; margin: 0; color: #F5F2EB; letter-spacing: -0.01em;">Wherever you sell, Alimi closes.</h2>
           </div>
           <div style="{{ gridBuiltFor }}">
-            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:22px;" hint-size="auto,auto">
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:22px;">
               <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(22,196,127,0.14); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px;">🏠</div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0 0 5px; color: #F5F2EB;">Real estate &amp; property</h3>
               <p style="margin: 0; font-size: 13px; color: #9FB0A6;">Book viewings, qualify buyers</p>
-            </x-import>
-            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:22px;" hint-size="auto,auto">
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:22px;">
               <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(245,162,75,0.16); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px;">🎥</div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0 0 5px; color: #F5F2EB;">Creator economy &amp; courses</h3>
               <p style="margin: 0; font-size: 13px; color: #9FB0A6;">Convert followers to enrollments</p>
-            </x-import>
-            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:22px;" hint-size="auto,auto">
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:22px;">
               <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(47,107,236,0.14); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px;">🛍️</div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0 0 5px; color: #F5F2EB;">Small business &amp; services</h3>
               <p style="margin: 0; font-size: 13px; color: #9FB0A6;">Answer, quote, and book jobs</p>
-            </x-import>
-            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:22px;" hint-size="auto,auto">
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:22px;">
               <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px;">🏢</div>
               <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0 0 5px; color: #F5F2EB;">Agency &amp; multi-client</h3>
               <p style="margin: 0; font-size: 13px; color: #9FB0A6;">Deploy agents for every client</p>
-            </x-import>
+            </div>
           </div>
         </div>
       </div>
@@ -1095,7 +1132,7 @@
                 </div>
               </div>
             </x-import>
-            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);" hint-size="auto,auto">
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
               <p style="margin: 0 0 20px; font-size: 16px; line-height: 1.6; color: #E7EDE9;">"Every enrollment question used to sit in my DMs for days. Now the agent handles pricing and payment plans instantly, and I get a briefing the moment someone's ready to enroll."</p>
               <div style="display: flex; align-items: center; gap: 11px;">
                 <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg,#2F6BEC,#1F4FB0); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; font-size: 14px;">A</div>
@@ -1104,7 +1141,7 @@
                   <div style="font-size: 12.5px; color: #7C8B83;">Founder, Amara Teaches Design</div>
                 </div>
               </div>
-            </x-import>
+            </div>
           </div>
         </div>
       </div>
@@ -1143,6 +1180,597 @@
               <div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #7C8B83; margin-bottom: 14px;">Company</div>
               <div style="display: flex; flex-direction: column; gap: 10px;">
                 <a href="#customers" style="color: #9FB0A6; font-size: 13.5px; text-decoration: none;">Customers</a>
+                <button onClick="{{ goSignup }}" style="background: none; border: none; padding: 0; text-align: left; color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Get started</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.06);">
+          <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <span style="font-size: 12.5px; color: #6E7C74;">© 2026 Alimi. All rights reserved.</span>
+            <span style="font-size: 12.5px; color: #6E7C74;">Trusted by 200+ businesses across Lagos, Accra, and Nairobi.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- PRODUCT -->
+    <sc-if value="{{ isProduct }}">
+    <div class="scr" style="background: #0C1712; min-height: 100vh;">
+
+      <!-- nav -->
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 22px 32px;">
+        <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onClick="{{ goLanding }}">
+          <div style="width: 30px; height: 30px; border-radius: 9px; background: #16C47F; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.2 3.4A.6.6 0 0 1 4.8 19V5.5Z" fill="#07130D"></path><path d="M9 9.2l2.2 2.4L15.4 7" stroke="#16C47F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <span style="font-family: 'Space Grotesk'; font-weight: 600; color: #F5F2EB; font-size: 20px;">Alimi</span>
+        </div>
+        <sc-if value="{{ notIsMobile }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; align-items: center; gap: 28px;">
+          <button onClick="{{ goProduct }}" style="{{ navProductStyle }}">Product</button>
+          <button onClick="{{ goPricingPage }}" style="{{ navPricingStyle }}">Pricing</button>
+          <button onClick="{{ goCustomersPage }}" style="{{ navCustomersStyle }}">Customers</button>
+          <button onClick="{{ goSignin }}" style="background: none; border: none; color: #F5F2EB; font-size: 14px; font-weight: 600; cursor: pointer;">Sign in</button>
+          <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="accent-green" on-click="{{ goSignup }}" hint-size="auto,40px">Get started free</x-import>
+        </div>
+        </sc-if>
+        <sc-if value="{{ isMobile }}">
+        <button onClick="{{ toggleMobileNav }}" style="background: none; border: none; color: #F5F2EB; padding: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#F5F2EB" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+        </sc-if>
+      </div>
+      <sc-if value="{{ mobileNavOpen }}">
+        <div style="background: #0C1712; border-top: 1px solid rgba(255,255,255,0.08); padding: 10px 24px 20px; display: flex; flex-direction: column; gap: 4px;">
+          <button onClick="{{ goProduct }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Product</button>
+          <button onClick="{{ goPricingPage }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Pricing</button>
+          <button onClick="{{ goCustomersPage }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Customers</button>
+          <button onClick="{{ goSignin }}" style="background: none; border: none; color: #F5F2EB; font-size: 15px; font-weight: 600; cursor: pointer; text-align: left; padding: 12px 4px;">Sign in</button>
+          <button onClick="{{ goSignup }}" style="margin-top: 8px; background: #16C47F; color: #07130D; border: none; padding: 13px; border-radius: 999px; font-size: 15px; font-weight: 600; cursor: pointer;">Get started free</button>
+        </div>
+      </sc-if>
+
+      <!-- hero -->
+      <div style="max-width: 780px; margin: 0 auto; padding: 56px 32px 40px; text-align: center;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(22,196,127,0.12); border: 1px solid rgba(22,196,127,0.25); padding: 6px 14px; border-radius: 20px; margin-bottom: 22px;">
+          <span style="color: #7CE0AC; font-size: 13px; font-weight: 600;">How Alimi works</span>
+        </div>
+        <h1 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 44px; line-height: 1.12; margin: 0; color: #F5F2EB; letter-spacing: -0.02em;">An AI agent that sells<br>like your best rep.</h1>
+        <p style="margin: 20px auto 0; color: #A9B4AC; font-size: 17px; line-height: 1.6; max-width: 560px;">Alimi holds real conversations, qualifies every lead, and hands you the ones ready to buy — with a full briefing on how to close them.</p>
+      </div>
+
+      <!-- 90/10 MODEL -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08); background: #F5F2EB;">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 64px 32px;">
+          <div style="max-width: 560px; margin: 0 auto 36px; text-align: center;">
+            <div style="color: #0B7A4B; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px;">The 90/10 model</div>
+            <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 30px; line-height: 1.2; margin: 0; color: #12211B; letter-spacing: -0.01em;">AI does 90%. You close the 10%.</h2>
+          </div>
+          <div style="display: grid; grid-template-columns: {{ twoColOrOne }}; gap: 20px;">
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="padding:30px;" hint-size="auto,auto">
+              <div style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 40px; color: #0B7A4B; margin-bottom: 6px;">90%</div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 18px; margin: 0 0 8px; color: #12211B;">Alimi handles the grind</h3>
+              <p style="margin: 0 0 18px; font-size: 14.5px; color: #6E7A73; line-height: 1.55;">Every inbound conversation, day or night — answered in under a minute, qualified, and nurtured toward your goal.</p>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Instant first reply</div>
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Answers from your knowledge base</div>
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Handles objections &amp; scheduling</div>
+              </div>
+            </x-import>
+            <div style="padding:30px;background:#0C1712;border-color:#0C1712;">
+              <div style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 40px; color: #F5A24B; margin-bottom: 6px;">10%</div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 18px; margin: 0 0 8px; color: #F5F2EB;">You do what only you can</h3>
+              <p style="margin: 0 0 18px; font-size: 14.5px; color: #9FB0A6; line-height: 1.55;">Step in exactly when it matters — armed with an Intelligence Briefing that tells you precisely how to close.</p>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #F5F2EB;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#F5A24B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Take over any conversation instantly</div>
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #F5F2EB;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#F5A24B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Close warm, qualified leads</div>
+                <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #F5F2EB;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#F5A24B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Build the human relationship</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURES -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 72px 32px;">
+          <div style="{{ gridFeatures }}">
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
+              <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(22,196,127,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 2H8a2 2 0 0 0-2 2v12l4-2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z" stroke="#16C47F" stroke-width="1.8"></path></svg></div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Autonomous agents</h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">Set a goal and a personality. Your agent runs real conversations 24/7 and works every lead toward that outcome.</p>
+            </div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
+              <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(245,162,75,0.16); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 3l-1.5 8H17l-6 10 1.5-8H6l7-10Z" stroke="#F5A24B" stroke-width="1.7" stroke-linejoin="round"></path></svg></div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Intelligence Briefings</h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">The moment a lead qualifies, get a briefing: intent scores, interests, objections, and your next three moves.</p>
+            </div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
+              <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(47,107,236,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C7 2 3 5.8 3 10.5c0 3 1.8 5.6 4.5 7.1L7 22l4.2-2.2c.3 0 .5.1.8.1 5 0 9-3.8 9-8.5S17 2 12 2Z" stroke="#5B90F5" stroke-width="1.8"></path></svg></div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">WhatsApp &amp; Email</h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">Meet customers where they already are. One agent, both channels, every conversation in one inbox.</p>
+            </div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
+              <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(201,196,180,0.16); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 15l6-6M11 6l1-1a4 4 0 0 1 6 6l-1 1M13 18l-1 1a4 4 0 0 1-6-6l1-1" stroke="#C9C4B4" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Entry points &amp; attribution</h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">Deep-links, QR codes, and embeds — each carrying a source label that survives shorteners. Know exactly what works.</p>
+            </div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
+              <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(22,196,127,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="#16C47F" stroke-width="1.7" stroke-linejoin="round"></path><path d="M9 12h6M9 16h6" stroke="#16C47F" stroke-width="1.6" stroke-linecap="round"></path></svg></div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Instant knowledge base</h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">Upload catalogues, price sheets, or a URL. Your agent becomes an expert in minutes — always accurate on pricing.</p>
+            </div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px;">
+            <div>
+              <div style="width: 40px; height: 40px; border-radius: 11px; background: rgba(220,90,90,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2" stroke="#E06A6A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 16px; margin: 0 0 6px; color: #F5F2EB;">Human take-over</h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #9FB0A6;">Jump into any live chat with one tap. The AI steps back, you step in, and hand back whenever you like.</p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE IN 30 MIN -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08); background: #F5F2EB;">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 64px 32px; text-align: center;">
+          <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 28px; margin: 0 0 40px; color: #12211B; letter-spacing: -0.01em;">Live in under 30 minutes</h2>
+          <div style="{{ gridHowItWorks }}; text-align: left;">
+            <div>
+              <div style="width: 34px; height: 34px; border-radius: 10px; background: #0C1712; color: #16C47F; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk'; font-weight: 700; font-size: 14px; margin-bottom: 14px;">1</div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15.5px; margin: 0 0 6px; color: #12211B;">Describe your business</h3>
+              <p style="margin: 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">Pick your vertical and name your agent.</p>
+            </div>
+            <div>
+              <div style="width: 34px; height: 34px; border-radius: 10px; background: #0C1712; color: #16C47F; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk'; font-weight: 700; font-size: 14px; margin-bottom: 14px;">2</div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15.5px; margin: 0 0 6px; color: #12211B;">Feed it knowledge</h3>
+              <p style="margin: 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">Upload docs or a URL — it learns instantly.</p>
+            </div>
+            <div>
+              <div style="width: 34px; height: 34px; border-radius: 10px; background: #16C47F; color: #07130D; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk'; font-weight: 700; font-size: 14px; margin-bottom: 14px;">3</div>
+              <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15.5px; margin: 0 0 6px; color: #12211B;">Set the win</h3>
+              <p style="margin: 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">Define what a qualified lead looks like.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div style="max-width: 780px; margin: 0 auto; padding: 80px 32px; text-align: center;">
+          <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 34px; line-height: 1.15; margin: 0; color: #F5F2EB; letter-spacing: -0.01em;">See it work on your own leads.</h2>
+          <p style="margin: 16px 0 0; color: #9FB0A6; font-size: 16px; line-height: 1.55;">Build your first agent free — no code, no credit card.</p>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 28px; flex-wrap: wrap;">
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="accent-green" on-click="{{ goSignup }}" style="padding:14px 24px;font-size:15px;" hint-size="auto,48px">Get started free</x-import>
+            <button onClick="{{ goPricingPage }}" style="background: rgba(255,255,255,0.06); color: #F5F2EB; border: 1px solid rgba(255,255,255,0.14); padding: 14px 22px; border-radius: 999px; font-size: 15px; font-weight: 600; cursor: pointer;">See pricing</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 44px 32px 36px; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+          <div style="max-width: 280px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+              <div style="width: 26px; height: 26px; border-radius: 8px; background: #16C47F; display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.2 3.4A.6.6 0 0 1 4.8 19V5.5Z" fill="#07130D"></path><path d="M9 9.2l2.2 2.4L15.4 7" stroke="#16C47F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <span style="font-family: 'Space Grotesk'; font-weight: 600; color: #F5F2EB; font-size: 17px;">Alimi</span>
+            </div>
+            <p style="margin: 0; font-size: 13.5px; color: #7C8B83; line-height: 1.6;">Autonomous AI agents that hold real sales conversations on WhatsApp &amp; Email, 24/7.</p>
+          </div>
+          <div style="display: flex; gap: 56px; flex-wrap: wrap;">
+            <div>
+              <div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #7C8B83; margin-bottom: 14px;">Product</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button onClick="{{ goProduct }}" style="background:none;border:none;padding:0;text-align:left;color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Features</button>
+                <button onClick="{{ goPricingPage }}" style="background:none;border:none;padding:0;text-align:left;color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Pricing</button>
+                <button onClick="{{ goDemo }}" style="background: none; border: none; padding: 0; text-align: left; color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Watch demo</button>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #7C8B83; margin-bottom: 14px;">Company</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button onClick="{{ goCustomersPage }}" style="background:none;border:none;padding:0;text-align:left;color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Customers</button>
+                <button onClick="{{ goSignup }}" style="background: none; border: none; padding: 0; text-align: left; color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Get started</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.06);">
+          <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <span style="font-size: 12.5px; color: #6E7C74;">© 2026 Alimi. All rights reserved.</span>
+            <span style="font-size: 12.5px; color: #6E7C74;">Trusted by 200+ businesses across Lagos, Accra, and Nairobi.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- PRICING PAGE -->
+    <sc-if value="{{ isPricingPage }}">
+    <div class="scr" style="background: #0C1712; min-height: 100vh;">
+
+      <!-- nav -->
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 22px 32px;">
+        <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onClick="{{ goLanding }}">
+          <div style="width: 30px; height: 30px; border-radius: 9px; background: #16C47F; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.2 3.4A.6.6 0 0 1 4.8 19V5.5Z" fill="#07130D"></path><path d="M9 9.2l2.2 2.4L15.4 7" stroke="#16C47F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <span style="font-family: 'Space Grotesk'; font-weight: 600; color: #F5F2EB; font-size: 20px;">Alimi</span>
+        </div>
+        <sc-if value="{{ notIsMobile }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; align-items: center; gap: 28px;">
+          <button onClick="{{ goProduct }}" style="{{ navProductStyle }}">Product</button>
+          <button onClick="{{ goPricingPage }}" style="{{ navPricingStyle }}">Pricing</button>
+          <button onClick="{{ goCustomersPage }}" style="{{ navCustomersStyle }}">Customers</button>
+          <button onClick="{{ goSignin }}" style="background: none; border: none; color: #F5F2EB; font-size: 14px; font-weight: 600; cursor: pointer;">Sign in</button>
+          <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="accent-green" on-click="{{ goSignup }}" hint-size="auto,40px">Get started free</x-import>
+        </div>
+        </sc-if>
+        <sc-if value="{{ isMobile }}">
+        <button onClick="{{ toggleMobileNav }}" style="background: none; border: none; color: #F5F2EB; padding: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#F5F2EB" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+        </sc-if>
+      </div>
+      <sc-if value="{{ mobileNavOpen }}">
+        <div style="background: #0C1712; border-top: 1px solid rgba(255,255,255,0.08); padding: 10px 24px 20px; display: flex; flex-direction: column; gap: 4px;">
+          <button onClick="{{ goProduct }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Product</button>
+          <button onClick="{{ goPricingPage }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Pricing</button>
+          <button onClick="{{ goCustomersPage }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Customers</button>
+          <button onClick="{{ goSignin }}" style="background: none; border: none; color: #F5F2EB; font-size: 15px; font-weight: 600; cursor: pointer; text-align: left; padding: 12px 4px;">Sign in</button>
+          <button onClick="{{ goSignup }}" style="margin-top: 8px; background: #16C47F; color: #07130D; border: none; padding: 13px; border-radius: 999px; font-size: 15px; font-weight: 600; cursor: pointer;">Get started free</button>
+        </div>
+      </sc-if>
+
+      <!-- hero -->
+      <div style="max-width: 720px; margin: 0 auto; padding: 56px 32px 44px; text-align: center;">
+        <h1 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 42px; line-height: 1.15; margin: 0; color: #F5F2EB; letter-spacing: -0.02em;">Pricing that scales<br>with your pipeline.</h1>
+        <p style="margin: 18px auto 0; color: #A9B4AC; font-size: 16px; line-height: 1.6; max-width: 480px;">Every plan starts with a free trial. Keep going once your agent is closing enough deals to pay for itself &mdash; which is fast.</p>
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(22,196,127,0.12); border: 1px solid rgba(22,196,127,0.25); padding: 6px 14px; border-radius: 20px; margin-top: 22px;">
+          <span style="color: #7CE0AC; font-size: 13px; font-weight: 600;">Start free &mdash; first 14 days on us, no card required</span>
+        </div>
+      </div>
+
+      <!-- PRICING CARDS -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08); background: #F5F2EB;">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 56px 32px;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 40px;">
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Tabs.MonthlyYearlyToggle" default-yearly="{{ billingAnnual }}" on-change="{{ onBillingToggle }}" hint-size="132px,36px"></x-import>
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Badge" variant="discount" hint-size="auto,22px">Save 20%</x-import>
+          </div>
+
+          <div style="{{ gridPricingCards }}">
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="pricing" hint-size="auto,auto">
+              <div style="display: flex; flex-direction: column;">
+                <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 19px; margin: 0; color: #12211B;">Starter</h3>
+                <p style="margin: 8px 0 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">For solo founders &amp; creators.</p>
+                <div style="margin: 22px 0 20px;"><span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 38px; color: #12211B;">₦29</span><span style="color: #6E7A73; font-size: 14px;">/mo</span></div>
+                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="secondary" on-click="{{ goSignup }}" hint-size="100%,44px" dc-props="{{ fullWidthBtn }}">Start free trial</x-import>
+                <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #EAE5D9; padding-top: 22px;">
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>1 AI agent</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>WhatsApp channel</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>250 conversations/mo</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Intelligence Briefings</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Basic analytics</div>
+                </div>
+              </div>
+            </x-import>
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="pricing-featured" hint-size="auto,auto">
+              <div style="position: relative; display: flex; flex-direction: column;">
+                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Badge" variant="discount" style="position:absolute;top:-42px;left:50%;transform:translateX(-50%);white-space:nowrap;" hint-size="auto,22px">MOST POPULAR</x-import>
+                <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 19px; margin: 0; color: #12211B;">Growth</h3>
+                <p style="margin: 8px 0 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">For growing businesses.</p>
+                <div style="margin: 22px 0 4px;"><span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 38px; color: #12211B;">{{ proPrice }}</span><span style="color: #6E7A73; font-size: 14px;">/mo</span></div>
+                <div style="font-size: 12.5px; color: #0B7A4B; margin-bottom: 20px;">{{ proSub }}</div>
+                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="primary" on-click="{{ goSignup }}" hint-size="100%,44px" dc-props="{{ fullWidthBtn }}">Start free trial</x-import>
+                <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #EAE5D9; padding-top: 22px;">
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>3 AI agents</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>WhatsApp + Email</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>2,500 conversations/mo</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Human take-over</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Full analytics &amp; sources</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Custom success events</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #12211B;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>QR &amp; embed widgets</div>
+                </div>
+              </div>
+            </x-import>
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="pricing" hint-size="auto,auto">
+              <div style="display: flex; flex-direction: column;">
+                <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 19px; margin: 0; color: #12211B;">Scale</h3>
+                <p style="margin: 8px 0 0; font-size: 13.5px; color: #6E7A73; line-height: 1.5;">For agencies &amp; teams.</p>
+                <div style="margin: 22px 0 20px;"><span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 38px; color: #12211B;">₦249</span><span style="color: #6E7A73; font-size: 14px;">/mo</span></div>
+                <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="secondary" on-click="{{ contactSales }}" hint-size="100%,44px" dc-props="{{ fullWidthBtn }}">Talk to sales</x-import>
+                <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #EAE5D9; padding-top: 22px;">
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Unlimited agents</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>All channels</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>15,000 conversations/mo</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Multi-client workspaces</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Team roles &amp; permissions</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>API &amp; webhooks</div>
+                  <div style="display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #4B5750;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 7L9.5 17.5 4 12" stroke="#0B7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Priority support &amp; SLA</div>
+                </div>
+              </div>
+            </x-import>
+          </div>
+
+          <!-- ENTERPRISE BANNER -->
+          <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;" hint-size="auto,auto">
+            <div>
+              <div style="font-weight: 600; font-size: 16px; color: #12211B; margin-bottom: 4px;">Enterprise</div>
+              <div style="font-size: 13.5px; color: #6E7A73;">Volume conversations, dedicated infrastructure, SSO, and a named success manager.</div>
+            </div>
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="primary" on-click="{{ contactSales }}" hint-size="auto,42px">Contact sales</x-import>
+          </x-import>
+        </div>
+      </div>
+
+      <!-- COMPARE PLANS -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div style="max-width: 900px; margin: 0 auto; padding: 64px 32px;">
+          <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 26px; margin: 0 0 28px; color: #F5F2EB; text-align: center; letter-spacing: -0.01em;">Compare plans</h2>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden;">
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; padding: 14px 20px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #7C8B83; border-bottom: 1px solid rgba(255,255,255,0.08);">
+              <div></div><div style="text-align:center;">Starter</div><div style="text-align:center;color:#16C47F;">Growth</div><div style="text-align:center;">Scale</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; padding: 14px 20px; font-size: 13.5px; color: #E7EDE9; border-bottom: 1px solid rgba(255,255,255,0.05);"><div style="color:#9FB0A6;">AI agents</div><div style="text-align:center;">1</div><div style="text-align:center;font-weight:600;color:#16C47F;">3</div><div style="text-align:center;">Unlimited</div></div>
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; padding: 14px 20px; font-size: 13.5px; color: #E7EDE9; border-bottom: 1px solid rgba(255,255,255,0.05);"><div style="color:#9FB0A6;">Conversations / month</div><div style="text-align:center;">250</div><div style="text-align:center;font-weight:600;color:#16C47F;">2,500</div><div style="text-align:center;">15,000</div></div>
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; padding: 14px 20px; font-size: 13.5px; color: #E7EDE9; border-bottom: 1px solid rgba(255,255,255,0.05);"><div style="color:#9FB0A6;">Channels</div><div style="text-align:center;">1</div><div style="text-align:center;font-weight:600;color:#16C47F;">WhatsApp + Email</div><div style="text-align:center;">All channels</div></div>
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; padding: 14px 20px; font-size: 13.5px; color: #E7EDE9; border-bottom: 1px solid rgba(255,255,255,0.05);"><div style="color:#9FB0A6;">Intelligence Briefings</div><div style="text-align:center;">✓</div><div style="text-align:center;font-weight:600;color:#16C47F;">✓</div><div style="text-align:center;">✓</div></div>
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; padding: 14px 20px; font-size: 13.5px; color: #E7EDE9; border-bottom: 1px solid rgba(255,255,255,0.05);"><div style="color:#9FB0A6;">Human take-over</div><div style="text-align:center;color:#5C6862;">—</div><div style="text-align:center;font-weight:600;color:#16C47F;">✓</div><div style="text-align:center;">✓</div></div>
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; padding: 14px 20px; font-size: 13.5px; color: #E7EDE9; border-bottom: 1px solid rgba(255,255,255,0.05);"><div style="color:#9FB0A6;">Source attribution &amp; QR</div><div style="text-align:center;color:#5C6862;">—</div><div style="text-align:center;font-weight:600;color:#16C47F;">✓</div><div style="text-align:center;">✓</div></div>
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; padding: 14px 20px; font-size: 13.5px; color: #E7EDE9; border-bottom: 1px solid rgba(255,255,255,0.05);"><div style="color:#9FB0A6;">Multi-client workspaces</div><div style="text-align:center;color:#5C6862;">—</div><div style="text-align:center;color:#5C6862;">—</div><div style="text-align:center;">✓</div></div>
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; padding: 14px 20px; font-size: 13.5px; color: #E7EDE9;"><div style="color:#9FB0A6;">Support</div><div style="text-align:center;">Community</div><div style="text-align:center;font-weight:600;color:#16C47F;">Email</div><div style="text-align:center;">Priority + SLA</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08); background: #F5F2EB;">
+        <div style="max-width: 780px; margin: 0 auto; padding: 64px 32px;">
+          <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 26px; margin: 0 0 28px; color: #12211B; text-align: center; letter-spacing: -0.01em;">Questions, answered</h2>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" hint-size="auto,auto">
+              <div style="font-weight: 600; font-size: 15px; color: #12211B; margin-bottom: 8px;">What counts as a conversation?</div>
+              <div style="font-size: 14px; color: #6E7A73; line-height: 1.55;">One unique person messaging your agent within a 24-hour window &mdash; no matter how many messages back and forth.</div>
+            </x-import>
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" hint-size="auto,auto">
+              <div style="font-weight: 600; font-size: 15px; color: #12211B; margin-bottom: 8px;">Do I need a tech team?</div>
+              <div style="font-size: 14px; color: #6E7A73; line-height: 1.55;">No. If you can write a message and upload a file, you can build an Alimi agent. Most go live in under 30 minutes.</div>
+            </x-import>
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" hint-size="auto,auto">
+              <div style="font-weight: 600; font-size: 15px; color: #12211B; margin-bottom: 8px;">Can I change plans anytime?</div>
+              <div style="font-size: 14px; color: #6E7A73; line-height: 1.55;">Yes &mdash; upgrade, downgrade, or cancel whenever. Changes take effect on your next billing cycle.</div>
+            </x-import>
+            <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" hint-size="auto,auto">
+              <div style="font-weight: 600; font-size: 15px; color: #12211B; margin-bottom: 8px;">What happens if I exceed my limit?</div>
+              <div style="font-size: 14px; color: #6E7A73; line-height: 1.55;">Your agent keeps running. We'll notify you and you can upgrade &mdash; conversations are never dropped silently.</div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 44px 32px 36px; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+          <div style="max-width: 280px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+              <div style="width: 26px; height: 26px; border-radius: 8px; background: #16C47F; display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.2 3.4A.6.6 0 0 1 4.8 19V5.5Z" fill="#07130D"></path><path d="M9 9.2l2.2 2.4L15.4 7" stroke="#16C47F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <span style="font-family: 'Space Grotesk'; font-weight: 600; color: #F5F2EB; font-size: 17px;">Alimi</span>
+            </div>
+            <p style="margin: 0; font-size: 13.5px; color: #7C8B83; line-height: 1.6;">Autonomous AI agents that hold real sales conversations on WhatsApp &amp; Email, 24/7.</p>
+          </div>
+          <div style="display: flex; gap: 56px; flex-wrap: wrap;">
+            <div>
+              <div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #7C8B83; margin-bottom: 14px;">Product</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button onClick="{{ goProduct }}" style="background:none;border:none;padding:0;text-align:left;color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Features</button>
+                <button onClick="{{ goPricingPage }}" style="background:none;border:none;padding:0;text-align:left;color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Pricing</button>
+                <button onClick="{{ goDemo }}" style="background: none; border: none; padding: 0; text-align: left; color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Watch demo</button>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #7C8B83; margin-bottom: 14px;">Company</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button onClick="{{ goCustomersPage }}" style="background:none;border:none;padding:0;text-align:left;color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Customers</button>
+                <button onClick="{{ goSignup }}" style="background: none; border: none; padding: 0; text-align: left; color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Get started</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.06);">
+          <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <span style="font-size: 12.5px; color: #6E7C74;">© 2026 Alimi. All rights reserved.</span>
+            <span style="font-size: 12.5px; color: #6E7C74;">Trusted by 200+ businesses across Lagos, Accra, and Nairobi.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- CUSTOMERS PAGE -->
+    <sc-if value="{{ isCustomersPage }}">
+    <div class="scr" style="background: #0C1712; min-height: 100vh;">
+
+      <!-- nav -->
+      <div style="max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 22px 32px;">
+        <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onClick="{{ goLanding }}">
+          <div style="width: 30px; height: 30px; border-radius: 9px; background: #16C47F; display: flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.2 3.4A.6.6 0 0 1 4.8 19V5.5Z" fill="#07130D"></path><path d="M9 9.2l2.2 2.4L15.4 7" stroke="#16C47F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <span style="font-family: 'Space Grotesk'; font-weight: 600; color: #F5F2EB; font-size: 20px;">Alimi</span>
+        </div>
+        <sc-if value="{{ notIsMobile }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; align-items: center; gap: 28px;">
+          <button onClick="{{ goProduct }}" style="{{ navProductStyle }}">Product</button>
+          <button onClick="{{ goPricingPage }}" style="{{ navPricingStyle }}">Pricing</button>
+          <button onClick="{{ goCustomersPage }}" style="{{ navCustomersStyle }}">Customers</button>
+          <button onClick="{{ goSignin }}" style="background: none; border: none; color: #F5F2EB; font-size: 14px; font-weight: 600; cursor: pointer;">Sign in</button>
+          <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Button" variant="accent-green" on-click="{{ goSignup }}" hint-size="auto,40px">Get started free</x-import>
+        </div>
+        </sc-if>
+        <sc-if value="{{ isMobile }}">
+        <button onClick="{{ toggleMobileNav }}" style="background: none; border: none; color: #F5F2EB; padding: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#F5F2EB" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+        </sc-if>
+      </div>
+      <sc-if value="{{ mobileNavOpen }}">
+        <div style="background: #0C1712; border-top: 1px solid rgba(255,255,255,0.08); padding: 10px 24px 20px; display: flex; flex-direction: column; gap: 4px;">
+          <button onClick="{{ goProduct }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Product</button>
+          <button onClick="{{ goPricingPage }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Pricing</button>
+          <button onClick="{{ goCustomersPage }}" style="color: #F5F2EB; font-size: 15px; text-align: left; background: none; border: none; padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.06);">Customers</button>
+          <button onClick="{{ goSignin }}" style="background: none; border: none; color: #F5F2EB; font-size: 15px; font-weight: 600; cursor: pointer; text-align: left; padding: 12px 4px;">Sign in</button>
+          <button onClick="{{ goSignup }}" style="margin-top: 8px; background: #16C47F; color: #07130D; border: none; padding: 13px; border-radius: 999px; font-size: 15px; font-weight: 600; cursor: pointer;">Get started free</button>
+        </div>
+      </sc-if>
+
+      <!-- hero -->
+      <div style="max-width: 720px; margin: 0 auto; padding: 56px 32px 36px; text-align: center;">
+        <h1 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 42px; line-height: 1.15; margin: 0; color: #F5F2EB; letter-spacing: -0.02em;">Businesses that never<br>miss a lead again.</h1>
+        <p style="margin: 18px auto 0; color: #A9B4AC; font-size: 16px; line-height: 1.6; max-width: 480px;">From Lagos real estate to Accra creators — 200+ teams close more with Alimi doing the 90%.</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 32px;">
+          <span style="color: #6E7C74; font-size: 14.5px; font-weight: 600;">Lekki Homes</span>
+          <span style="color: #6E7C74; font-size: 14.5px; font-weight: 600;">AccraLearn</span>
+          <span style="color: #6E7C74; font-size: 14.5px; font-weight: 600;">Naija Threads</span>
+          <span style="color: #6E7C74; font-size: 14.5px; font-weight: 600;">PropVault</span>
+          <span style="color: #6E7C74; font-size: 14.5px; font-weight: 600;">Bloom Studio</span>
+          <span style="color: #6E7C74; font-size: 14.5px; font-weight: 600;">Kanzu Agency</span>
+        </div>
+      </div>
+
+      <!-- STAT BAND -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08); background: #F5F2EB;">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 40px 32px; display: grid; grid-template-columns: repeat({{ statCols }}, 1fr); gap: 20px;">
+          <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="text-align:center;" hint-size="auto,auto"><div style="font-family:'Space Grotesk';font-weight:600;font-size:30px;color:#0B7A4B;">3.4x</div><div style="color:#6E7A73;font-size:13.5px;margin-top:4px;">More qualified leads</div></x-import>
+          <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="text-align:center;" hint-size="auto,auto"><div style="font-family:'Space Grotesk';font-weight:600;font-size:30px;color:#0B7A4B;">&lt; 60s</div><div style="color:#6E7A73;font-size:13.5px;margin-top:4px;">Avg. response time</div></x-import>
+          <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="text-align:center;" hint-size="auto,auto"><div style="font-family:'Space Grotesk';font-weight:600;font-size:30px;color:#0B7A4B;">62%</div><div style="color:#6E7A73;font-size:13.5px;margin-top:4px;">Less time on manual chat</div></x-import>
+          <x-import component-from-global-scope="MintlifyDesignSystem_308d62.Card" variant="base" style="text-align:center;" hint-size="auto,auto"><div style="font-family:'Space Grotesk';font-weight:600;font-size:30px;color:#0B7A4B;">200+</div><div style="color:#6E7A73;font-size:13.5px;margin-top:4px;">Businesses on Alimi</div></x-import>
+        </div>
+      </div>
+
+      <!-- FEATURED TESTIMONIAL -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 56px 32px;">
+          <div style="display: grid; grid-template-columns: {{ twoColOrOne }}; background: #0C1712; border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden;">
+            <div style="padding: 40px;">
+              <div style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#16C47F;background:rgba(22,196,127,0.12);padding:4px 12px;border-radius:20px;margin-bottom:20px;">Featured &middot; Real estate</div>
+              <p style="margin: 0 0 24px; font-size: 22px; line-height: 1.4; color: #F5F2EB; font-family: 'Space Grotesk'; font-weight: 600;">"Alimi books viewings while I sleep. I just show up and close."</p>
+              <div style="display: flex; align-items: center; gap: 11px; margin-bottom: 26px;">
+                <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg,#F5A24B,#C9631C); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; font-size: 14px;">TB</div>
+                <div><div style="font-size: 14px; font-weight: 600; color: #F5F2EB;">Tunde Bakare</div><div style="font-size: 12.5px; color: #7C8B83;">Founder, Lekki Homes</div></div>
+              </div>
+              <div style="display: flex; gap: 24px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px;">
+                <div><div style="font-family:'Space Grotesk';font-weight:600;color:#16C47F;font-size:20px;">+41</div><div style="font-size:12px;color:#7C8B83;">Leads / week</div></div>
+                <div><div style="font-family:'Space Grotesk';font-weight:600;color:#16C47F;font-size:20px;">31%</div><div style="font-size:12px;color:#7C8B83;">Booking rate</div></div>
+                <div><div style="font-family:'Space Grotesk';font-weight:600;color:#16C47F;font-size:20px;">48s</div><div style="font-size:12px;color:#7C8B83;">Avg. reply</div></div>
+              </div>
+            </div>
+            <div style="background: #ECE5DD; padding: 24px; display: flex; flex-direction: column; gap: 10px; justify-content: center;">
+              <div style="align-self: flex-start; max-width: 82%; background: #fff; padding: 10px 13px; border-radius: 4px 12px 12px 12px; font-size: 13.5px; color: #12211B;">Is the 3-bed penthouse still available?</div>
+              <div style="align-self: flex-end; max-width: 82%; background: #DCF3E4; padding: 10px 13px; border-radius: 12px 4px 12px 12px; font-size: 13.5px; color: #12211B;">Yes! Want to see it Saturday 10 AM or Sunday 2 PM?</div>
+              <div style="align-self: flex-start; max-width: 82%; background: #fff; padding: 10px 13px; border-radius: 4px 12px 12px 12px; font-size: 13.5px; color: #12211B;">Saturday 10am 🙌</div>
+              <div style="align-self: center; margin-top: 6px;"><span style="font-size: 11.5px; color: #0B7A4B; font-weight: 600; background: rgba(11,122,75,0.1); padding: 4px 10px; border-radius: 8px;">✓ Viewing booked &middot; briefing sent</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MINI TESTIMONIALS GRID -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 0 32px 64px;">
+          <div style="display: grid; grid-template-columns: repeat({{ threeColOrOne }}, 1fr); gap: 20px;">
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:inline-block;font-size:11px;font-weight:700;color:#16C47F;background:#16C47F22;padding:3px 10px;border-radius:20px;margin-bottom:14px;">Real estate</div>
+              <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.6; color: #E7EDE9;">We used to lose weekend enquiries. Now every one gets a reply in seconds and a viewing on the calendar.</p>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#16C47F,#0B7A4B); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; font-size: 12.5px;">AE</div>
+                <div><div style="font-size: 13.5px; font-weight: 600; color: #F5F2EB;">Amara Eze</div><div style="font-size: 12px; color: #7C8B83;">Sales lead, PropVault</div></div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:inline-block;font-size:11px;font-weight:700;color:#F5A24B;background:#F5A24B22;padding:3px 10px;border-radius:20px;margin-bottom:14px;">Creator</div>
+              <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.6; color: #E7EDE9;">My course DMs were chaos. Alimi qualifies fans and enrolls them while I record. Enrollments doubled.</p>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#F5A24B,#C9631C); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; font-size: 12.5px;">KM</div>
+                <div><div style="font-size: 13.5px; font-weight: 600; color: #F5F2EB;">Kojo Mensah</div><div style="font-size: 12px; color: #7C8B83;">Founder, AccraLearn</div></div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:inline-block;font-size:11px;font-weight:700;color:#5B90F5;background:#5B90F522;padding:3px 10px;border-radius:20px;margin-bottom:14px;">Small business</div>
+              <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.6; color: #E7EDE9;">It quotes prices accurately from our catalogue and books jobs. It genuinely feels like another staff member.</p>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#5B90F5,#2F4FB0); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; font-size: 12.5px;">NA</div>
+                <div><div style="font-size: 13.5px; font-weight: 600; color: #F5F2EB;">Ngozi Ade</div><div style="font-size: 12px; color: #7C8B83;">Owner, Naija Threads</div></div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:inline-block;font-size:11px;font-weight:700;color:#C9C4B4;background:#C9C4B422;padding:3px 10px;border-radius:20px;margin-bottom:14px;">Agency</div>
+              <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.6; color: #E7EDE9;">We run an agent per client from one workspace. The source attribution alone sold our clients on Alimi.</p>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #0C1712; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; font-size: 12.5px;">DO</div>
+                <div><div style="font-size: 13.5px; font-weight: 600; color: #F5F2EB;">David Owusu</div><div style="font-size: 12px; color: #7C8B83;">Director, Kanzu Agency</div></div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:inline-block;font-size:11px;font-weight:700;color:#F5A24B;background:#F5A24B22;padding:3px 10px;border-radius:20px;margin-bottom:14px;">Creator</div>
+              <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.6; color: #E7EDE9;">The Intelligence Briefing tells me exactly who is ready to buy. I stopped guessing and started closing.</p>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#F5A24B,#C9631C); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; font-size: 12.5px;">ZB</div>
+                <div><div style="font-size: 13.5px; font-weight: 600; color: #F5F2EB;">Zainab Bello</div><div style="font-size: 12px; color: #7C8B83;">Coach, Bloom Studio</div></div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);">
+              <div style="display:inline-block;font-size:11px;font-weight:700;color:#16C47F;background:#16C47F22;padding:3px 10px;border-radius:20px;margin-bottom:14px;">Real estate</div>
+              <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.6; color: #E7EDE9;">Response time went from hours to under a minute. That difference is the whole game in property.</p>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#16C47F,#0B7A4B); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; font-size: 12.5px;">TB</div>
+                <div><div style="font-size: 13.5px; font-weight: 600; color: #F5F2EB;">Tunde Bakare</div><div style="font-size: 12px; color: #7C8B83;">Founder, Lekki Homes</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="background: #16C47F;">
+        <div style="max-width: 780px; margin: 0 auto; padding: 72px 32px; text-align: center;">
+          <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 32px; line-height: 1.2; margin: 0; color: #07130D; letter-spacing: -0.01em;">Your leads are waiting.</h2>
+          <p style="margin: 14px 0 0; color: #07130Dcc; font-size: 16px;">Join 200+ businesses letting Alimi handle the 90%.</p>
+          <div style="margin-top: 26px;">
+            <button onClick="{{ goSignup }}" style="background: #07130D; color: #F5F2EB; border: none; padding: 14px 26px; border-radius: 999px; font-size: 15px; font-weight: 600; cursor: pointer;">Get started free</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div style="max-width: 1160px; margin: 0 auto; padding: 44px 32px 36px; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+          <div style="max-width: 280px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+              <div style="width: 26px; height: 26px; border-radius: 8px; background: #16C47F; display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.2 3.4A.6.6 0 0 1 4.8 19V5.5Z" fill="#07130D"></path><path d="M9 9.2l2.2 2.4L15.4 7" stroke="#16C47F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+              <span style="font-family: 'Space Grotesk'; font-weight: 600; color: #F5F2EB; font-size: 17px;">Alimi</span>
+            </div>
+            <p style="margin: 0; font-size: 13.5px; color: #7C8B83; line-height: 1.6;">Autonomous AI agents that hold real sales conversations on WhatsApp &amp; Email, 24/7.</p>
+          </div>
+          <div style="display: flex; gap: 56px; flex-wrap: wrap;">
+            <div>
+              <div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #7C8B83; margin-bottom: 14px;">Product</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button onClick="{{ goProduct }}" style="background:none;border:none;padding:0;text-align:left;color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Features</button>
+                <button onClick="{{ goPricingPage }}" style="background:none;border:none;padding:0;text-align:left;color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Pricing</button>
+                <button onClick="{{ goDemo }}" style="background: none; border: none; padding: 0; text-align: left; color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Watch demo</button>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #7C8B83; margin-bottom: 14px;">Company</div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button onClick="{{ goCustomersPage }}" style="background:none;border:none;padding:0;text-align:left;color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Customers</button>
                 <button onClick="{{ goSignup }}" style="background: none; border: none; padding: 0; text-align: left; color: #9FB0A6; font-size: 13.5px; cursor: pointer;">Get started</button>
               </div>
             </div>
@@ -1302,7 +1930,7 @@
                 <div style="display: flex; justify-content: space-between; font-size: 13.5px;"><span style="color:#6E7A73;">Support</span><span style="font-weight:600; color:#12211B;">{{ currentPlanSupport }}</span></div>
               </div>
               <sc-if value="{{ limitReachedBilling }}">
-                <div style="margin-top: 16px; padding: 12px 14px; background: #FBEAD8; border-radius: 10px; font-size: 12.5px; color: #C9631C; line-height: 1.5;">You have reached your Free plan limit. Upgrade to create more agents and unlock more conversations.</div>
+                <div style="margin-top: 16px; padding: 12px 14px; background: #FBEAD8; border-radius: 10px; font-size: 12.5px; color: #C9631C; line-height: 1.5;">You have reached your Starter plan limit. Upgrade to create more agents and unlock more conversations.</div>
               </sc-if>
             </div>
 
@@ -1334,7 +1962,7 @@
               <sc-if value="{{ notHasInvoices }}" hint-placeholder-val="{{ true }}">
                 <div style="text-align: center; padding: 26px 10px;">
                   <div style="font-weight: 600; font-size: 14.5px; margin-bottom: 6px;">No invoices yet</div>
-                  <p style="margin: 0; font-size: 13px; color: #9AA39C;">Your invoices will appear here once you upgrade to a paid plan.</p>
+                  <p style="margin: 0; font-size: 13px; color: #9AA39C;">Your invoices will appear here after your first billing cycle.</p>
                 </div>
               </sc-if>
             </div>
@@ -1348,20 +1976,20 @@
               <p style="margin: 0 0 18px; font-size: 13.5px; color: #6E7A73;">Select a plan that fits your team's sales volume.</p>
 
               <div style="border: 1px solid #EAE5D9; border-radius: 14px; padding: 16px; margin-bottom: 12px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;"><h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0;">Free</h3><span style="font-weight: 600;">₦0/month</span></div>
-                <p style="margin: 0 0 10px; font-size: 12.5px; color: #6E7A73;">For trying Alimi with your first agent.</p>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;"><h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0;">Starter</h3><span style="font-weight: 600;">₦29/month</span></div>
+                <p style="margin: 0 0 10px; font-size: 12.5px; color: #6E7A73;">For solo founders &amp; creators.</p>
                 <button onClick="{{ selectFree }}" disabled="{{ isFreeTier }}" style="{{ freeBtnStyle }}">Current plan</button>
               </div>
 
               <div style="border: 2px solid #16C47F; border-radius: 14px; padding: 16px; margin-bottom: 12px; background: #F7FBF9;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;"><h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0;">Pro</h3><span style="font-weight: 600;">₦45,000/month</span></div>
-                <p style="margin: 0 0 10px; font-size: 12.5px; color: #6E7A73;">For teams closing deals every day.</p>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;"><h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0;">Growth</h3><span style="font-weight: 600;">₦79/month</span></div>
+                <p style="margin: 0 0 10px; font-size: 12.5px; color: #6E7A73;">For growing businesses.</p>
                 <button onClick="{{ selectPro }}" disabled="{{ isProTier }}" style="{{ proBtnStyle }}">{{ proBtnLabel }}</button>
               </div>
 
               <div style="border: 1px solid #EAE5D9; border-radius: 14px; padding: 16px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;"><h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0;">Agency</h3><span style="font-weight: 600;">Custom</span></div>
-                <p style="margin: 0 0 10px; font-size: 12.5px; color: #6E7A73;">For agencies managing multiple clients.</p>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;"><h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; margin: 0;">Scale</h3><span style="font-weight: 600;">₦249/month</span></div>
+                <p style="margin: 0 0 10px; font-size: 12.5px; color: #6E7A73;">For agencies &amp; teams.</p>
                 <button onClick="{{ selectAgency }}" style="padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600;border:1px solid #E4DFD3;background:none;color:#12211B;cursor:pointer;">Contact sales</button>
               </div>
             </div>
@@ -1386,9 +2014,9 @@
                 <div style="border-top: 1px solid #F0ECE1; padding-top: 16px;">
                   <h3 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 14px; margin: 0 0 10px;">Order summary</h3>
                   <div style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; margin-bottom: 16px;">
-                    <div style="display: flex; justify-content: space-between;"><span style="color:#6E7A73;">Selected plan</span><span style="font-weight:600;">Pro</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span style="color:#6E7A73;">Selected plan</span><span style="font-weight:600;">Growth</span></div>
                     <div style="display: flex; justify-content: space-between;"><span style="color:#6E7A73;">Billing cycle</span><span style="font-weight:600;">Monthly</span></div>
-                    <div style="display: flex; justify-content: space-between;"><span style="color:#6E7A73;">Amount due today</span><span style="font-weight:600;">₦45,000</span></div>
+                    <div style="display: flex; justify-content: space-between;"><span style="color:#6E7A73;">Amount due today</span><span style="font-weight:600;">₦79</span></div>
                     <div style="display: flex; justify-content: space-between;"><span style="color:#6E7A73;">Renewal</span><span style="font-weight:600;">Renews monthly</span></div>
                   </div>
                   <div style="display: flex; gap: 10px;">
@@ -1409,7 +2037,7 @@
             <div style="width: 56px; height: 56px; border-radius: 50%; background: #E7F3EC; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#0B7A4B"></circle><path d="M8 12l2.5 2.5L16 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>
-            <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 22px; margin: 0 0 8px;">You're now on Pro</h2>
+            <h2 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 22px; margin: 0 0 8px;">You're now on Growth</h2>
             <p style="margin: 0 0 22px; font-size: 14.5px; color: #6E7A73; line-height: 1.5;">You can now create up to 3 agents and use WhatsApp + Email together.</p>
             <button onClick="{{ closeUpgradeModal }}" style="width: 100%; background: #0B7A4B; color: #fff; border: none; padding: 13px; border-radius: 999px; font-size: 15px; font-weight: 600; cursor: pointer;">Back to Your Agents</button>
           </div>
@@ -1559,26 +2187,28 @@
     <div class="scr" style="background: #F5F2EB; min-height: 100vh; padding: 36px 40px 60px;">
       <div style="max-width: 1080px; margin: 0 auto;">
 
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 22px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 28px; justify-content: space-between">
+          <div style="box-sizing: border-box; display: flex; flex-direction: row; gap: 10px; justify-content: normal; align-items: center"><div style="width: 28px; height: 28px; border-radius: 8px; background: #16C47F; display: flex; align-items: center; justify-content: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8A2.5 2.5 0 0 1 17.5 16H10l-4.2 3.4A.6.6 0 0 1 4.8 19V5.5Z" fill="#07130D"></path><path d="M9 9.2l2.2 2.4L15.4 7" stroke="#16C47F" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><span style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 17px; color: #12211B;">Alimi</span></div>
+          <button onClick="{{ toggleProfileMenu }}" style="display: flex; align-items: center; gap: 6px; background: none; border: none; cursor: pointer; padding: 2px;">
+                <span style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,#E07B2E,#C9631C); color: #fff; font-weight: 600; font-size: 14.5px; display: flex; align-items: center; justify-content: center;">T</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 10l5 5 5-5" stroke="#6E7A73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
+        </div>
+
+        <div style="{{ agentsHeaderStyle }}">
           <div>
             <h1 style="font-family: 'Space Grotesk'; font-weight: 600; font-size: 28px; margin: 0; letter-spacing: -0.01em;">Your Agents</h1>
             <p style="margin: 8px 0 0; color: #6E7A73; font-size: 15px;">Choose an agent to manage, or create a new one.</p>
           </div>
-          <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
-            
-            
-            <sc-if value="{{ limitReached }}">
-              <button onClick="{{ upgradeFromAgents }}" style="background: #12211B; color: #fff; border: none; padding: 12px 18px; border-radius: 999px; font-size: 14.5px; font-weight: 600; cursor: pointer;">Upgrade plan</button>
-            </sc-if>
+          <div style="{{ agentsHeaderActionsStyle }}">
+
+
             <button onClick="{{ createNewAgent }}" disabled="{{ limitReached }}" title="{{ createBtnTitle }}" style="{{ createBtnStyle }}">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
               Create new agent
             </button>
             <div style="position: relative;">
-              <button onClick="{{ toggleProfileMenu }}" style="display: flex; align-items: center; gap: 6px; background: none; border: none; cursor: pointer; padding: 2px;">
-                <span style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,#E07B2E,#C9631C); color: #fff; font-weight: 600; font-size: 14.5px; display: flex; align-items: center; justify-content: center;">T</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 10l5 5 5-5" stroke="#6E7A73" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
+
               <sc-if value="{{ profileMenuOpen }}">
                 <div style="position: absolute; top: 48px; right: 0; z-index: 50; background: #fff; border: 1px solid #EAE5D9; border-radius: 14px; box-shadow: 0 12px 32px rgba(0,0,0,0.12); min-width: 190px; padding: 6px; display: flex; flex-direction: column;">
                   <div style="padding: 10px 12px 8px; border-bottom: 1px solid #F0ECE1; margin-bottom: 4px;">
@@ -1586,16 +2216,16 @@
                     <div style="font-size: 12px; color: #9AA39C;">tunde@lekkihomes.com</div>
                   </div>
                   <button onClick="{{ goProfileFromMenu }}" style="display: flex; align-items: center; gap: 9px; width: 100%; text-align: left; background: none; border: none; padding: 9px 10px; border-radius: 8px; font-size: 13.5px; font-weight: 500; color: #12211B; cursor: pointer;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="#6E7A73" stroke-width="1.7"/><path d="M4.5 20c1.5-4 5-6 7.5-6s6 2 7.5 6" stroke="#6E7A73" stroke-width="1.7" stroke-linecap="round"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="#6E7A73" stroke-width="1.7"></circle><path d="M4.5 20c1.5-4 5-6 7.5-6s6 2 7.5 6" stroke="#6E7A73" stroke-width="1.7" stroke-linecap="round"></path></svg>
                     Profile
                   </button>
                   <button onClick="{{ goSettingsFromMenu }}" style="display: flex; align-items: center; gap: 9px; width: 100%; text-align: left; background: none; border: none; padding: 9px 10px; border-radius: 8px; font-size: 13.5px; font-weight: 500; color: #12211B; cursor: pointer;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#6E7A73" stroke-width="1.7"/><path d="M19.4 13.5c.04-.5.04-1 0-1.5l1.5-1.2-1.5-2.6-1.8.5c-.4-.3-.8-.6-1.3-.8L16 5.5h-3l-.3 1.9c-.5.2-.9.5-1.3.8l-1.8-.5-1.5 2.6L9.6 12c-.04.5-.04 1 0 1.5L8.1 14.7l1.5 2.6 1.8-.5c.4.3.8.6 1.3.8l.3 1.9h3l.3-1.9c.5-.2.9-.5 1.3-.8l1.8.5 1.5-2.6-1.5-1.2Z" stroke="#6E7A73" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#6E7A73" stroke-width="1.7"></circle><path d="M19.4 13.5c.04-.5.04-1 0-1.5l1.5-1.2-1.5-2.6-1.8.5c-.4-.3-.8-.6-1.3-.8L16 5.5h-3l-.3 1.9c-.5.2-.9.5-1.3.8l-1.8-.5-1.5 2.6L9.6 12c-.04.5-.04 1 0 1.5L8.1 14.7l1.5 2.6 1.8-.5c.4.3.8.6 1.3.8l.3 1.9h3l.3-1.9c.5-.2.9-.5 1.3-.8l1.8.5 1.5-2.6-1.5-1.2Z" stroke="#6E7A73" stroke-width="1.4" stroke-linejoin="round"></path></svg>
                     Settings
                   </button>
                   <div style="border-top: 1px solid #F0ECE1; margin: 4px 0;"></div>
                   <button onClick="{{ signOutFromMenu }}" style="display: flex; align-items: center; gap: 9px; width: 100%; text-align: left; background: none; border: none; padding: 9px 10px; border-radius: 8px; font-size: 13.5px; font-weight: 500; color: #C9631C; cursor: pointer;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 12H4M8 8l-4 4 4 4M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4" stroke="#C9631C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 12H4M8 8l-4 4 4 4M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4" stroke="#C9631C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     Sign out
                   </button>
                 </div>
@@ -1614,7 +2244,7 @@
           </div>
           <sc-if value="{{ limitReached }}">
             <div style="display: flex; align-items: center; gap: 12px;">
-              <span style="font-size: 12.5px; color: #C9631C; max-width: 320px; text-align: right;">You have reached your Free plan agent limit. Upgrade to create more agents.</span>
+              <span style="font-size: 12.5px; color: #C9631C; max-width: 320px; text-align: right;">You have reached your Starter plan agent limit. Upgrade to create more agents.</span>
               <button onClick="{{ upgradeFromAgents }}" style="background: #0B7A4B; color: #fff; border: none; padding: 10px 18px; border-radius: 999px; font-size: 13.5px; font-weight: 600; cursor: pointer; white-space: nowrap;">Upgrade plan</button>
             </div>
           </sc-if>
@@ -1632,7 +2262,7 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"></path></svg>
               Create new agent
             </button>
-            <p style="margin: 16px 0 0; color: #9AA39C; font-size: 13px;">Free plan includes 1 agent. You can save your setup as a draft and continue later.</p>
+            <p style="margin: 16px 0 0; color: #9AA39C; font-size: 13px;">Starter plan includes 1 agent. You can save your setup as a draft and continue later.</p>
           </div>
         </sc-if>
 
@@ -2122,6 +2752,7 @@ class Component extends DCLogic {
     agentLimit: 1,
     settingsTab: 'profile',
     profileMenuOpen: false,
+    mobileNavOpen: false,
     billingSelectedPlan: null,
     billingShowPayment: false,
     showUpgradeModal: false,
@@ -2160,7 +2791,7 @@ class Component extends DCLogic {
   ];
   signInToAgents = () => this.setState({ screen: 'agents', justSignedUp: false, agentsList: this.DEMO_AGENTS });
   createNewAgent = () => {
-    if (this.slotsFull()) { this.flash('You have reached the Free plan limit. Upgrade to create more agents.'); return; }
+    if (this.slotsFull()) { this.flash('You have reached the Starter plan limit. Upgrade to create more agents.'); return; }
     if (this.state.justSignedUp) this.startOnboarding(); else this.resetBuilder();
   };
   slotsFull = () => {
@@ -2168,12 +2799,14 @@ class Component extends DCLogic {
     return used >= (this.state.agentLimit || 1);
   };
   restoreAgent = (id) => () => {
-    if (this.slotsFull()) { this.flash('You have reached the Free plan limit. Upgrade to restore this agent.'); return; }
+    if (this.slotsFull()) { this.flash('You have reached the Starter plan limit. Upgrade to restore this agent.'); return; }
     this.setState(st => ({ agentsList: st.agentsList.map(a => a.id === id ? { ...a, status: 'draft' } : a) }));
     this.flash('Agent restored — resume setup anytime.');
   };
   openSettings = () => this.setState({ screen: 'settings' });
   toggleProfileMenu = () => this.setState(s => ({ profileMenuOpen: !s.profileMenuOpen }));
+  toggleMobileNav = () => this.setState(s => ({ mobileNavOpen: !s.mobileNavOpen }));
+  closeMobileNav = () => this.setState({ mobileNavOpen: false });
   closeProfileMenu = () => this.setState({ profileMenuOpen: false });
   goProfileFromMenu = () => this.setState({ screen: 'settings', settingsTab: 'profile', profileMenuOpen: false });
   goSettingsFromMenu = () => this.setState({ screen: 'settings', profileMenuOpen: false });
@@ -2194,9 +2827,9 @@ class Component extends DCLogic {
       agentLimit: newLimit,
       billingShowPayment: false,
       showUpgradeModal: true,
-      invoices: [{ id: 'INV-00124', date: '04 Jul 2026', plan: 'Pro', amount: '₦45,000', status: 'Paid' }, ...st.invoices],
+      invoices: [{ id: 'INV-00124', date: '04 Jul 2026', plan: 'Growth', amount: '₦79', status: 'Paid' }, ...st.invoices],
     }));
-    this.flash('Your plan has been upgraded to Pro.');
+    this.flash('Your plan has been upgraded to Growth.');
   };
   cancelUpgrade = () => this.setState({ billingShowPayment: false, billingSelectedPlan: null });
   closeUpgradeModal = () => this.setState({ screen: 'agents', showUpgradeModal: false });
@@ -2207,7 +2840,7 @@ class Component extends DCLogic {
   savePrefsToast = () => this.flash('Notification preferences saved.');
   passwordToast = () => this.flash('Password updated successfully.');
   exportDataToast = () => this.flash('Exporting your data — we\u2019ll email a link shortly.');
-  inviteTeamToast = () => this.flash('Upgrade to Pro to invite team members.');
+  inviteTeamToast = () => this.flash('Upgrade to Growth to invite team members.');
   nextOb = () => this.setState(s => ({ onboardStep: Math.min(5, (s.onboardStep || 1) + 1) }));
   prevOb = () => this.setState(s => ({ onboardStep: Math.max(1, (s.onboardStep || 1) - 1) }));
   setObField = (key) => (e) => this.setState({ [key]: e.target.value });
@@ -2376,6 +3009,15 @@ class Component extends DCLogic {
       gridObStep2: `display: grid; grid-template-columns: ${g('1.1fr 1fr')}; gap: 28px; align-items: start;`,
       gridStatesEmpty: `display: grid; grid-template-columns: repeat(${m ? 1 : 2}, 1fr); gap: 16px;`,
       gridStatesErrors: `display: grid; grid-template-columns: repeat(${m ? 1 : 3}, 1fr); gap: 16px;`,
+      twoColOrOne: m ? '1fr' : '1fr 1fr',
+      statCols: m ? 2 : 4,
+      threeColOrOne: m ? 1 : 3,
+      agentsHeaderStyle: m
+        ? 'display: flex; flex-direction: column; align-items: stretch; gap: 14px; margin-bottom: 22px;'
+        : 'display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 22px;',
+      agentsHeaderActionsStyle: m
+        ? 'display: flex; align-items: center; gap: 10px; flex-shrink: 0; width: 100%;'
+        : 'display: flex; align-items: center; gap: 10px; flex-shrink: 0;',
     };
   }
 
@@ -2389,18 +3031,18 @@ class Component extends DCLogic {
     const outlinePill = pillBase + 'background:none;border:1px solid #E4DFD3;color:#12211B;';
     return {
       isFreeTier: tier === 'free', isProTier: tier === 'pro',
-      currentPlanLabel: tier === 'pro' ? 'Pro Plan' : 'Free Plan',
-      currentPlanPrice: tier === 'pro' ? '₦45,000/mo' : '₦0/month',
+      currentPlanLabel: tier === 'pro' ? 'Growth Plan' : 'Starter Plan',
+      currentPlanPrice: tier === 'pro' ? '₦79/mo' : '₦29/mo',
       currentPlanUsageText: `${usedSlots} of ${limit} agent${limit !== 1 ? 's' : ''} used`,
-      currentPlanChannels: tier === 'pro' ? 'WhatsApp + Email, unlimited conversations' : '1 channel — WhatsApp or Email',
-      currentPlanConvLimit: tier === 'pro' ? 'Unlimited conversations' : 'Up to 50 conversations/month',
-      currentPlanSupport: tier === 'pro' ? 'Priority support' : 'Community support',
+      currentPlanChannels: tier === 'pro' ? 'WhatsApp + Email' : 'WhatsApp channel',
+      currentPlanConvLimit: tier === 'pro' ? '2,500 conversations/mo' : '250 conversations/mo',
+      currentPlanSupport: tier === 'pro' ? 'Priority support' : 'Basic support',
       limitReachedBilling: usedSlots >= limit,
-      usageConvos: tier === 'pro' ? 'Unlimited' : '32 / 50',
+      usageConvos: tier === 'pro' ? '412 / 2,500' : '32 / 250',
       usageBriefings: '8',
       freeBtnStyle: tier === 'free' ? disabledPill : outlinePill,
       proBtnStyle: tier === 'pro' ? disabledPill : activePill,
-      proBtnLabel: tier === 'pro' ? 'Current plan' : 'Upgrade to Pro',
+      proBtnLabel: tier === 'pro' ? 'Current plan' : 'Upgrade to Growth',
       selectFree: this.selectUpgradePlan('free'),
       selectPro: this.selectUpgradePlan('pro'),
       selectAgency: this.selectUpgradePlan('agency'),
@@ -2491,7 +3133,7 @@ class Component extends DCLogic {
     const usedSlots = all.filter(a => a.status !== 'archived').length;
     const limit = this.state.agentLimit || 1;
     const limitReached = usedSlots >= limit;
-    const createBtnStyle = 'flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; border: none; padding: 12px 20px; border-radius: 999px; font-size: 14.5px; font-weight: 600; box-shadow: 0 3px 10px rgba(11,122,75,0.25);'
+    const createBtnStyle = (this.state.isMobile ? 'flex: 1; justify-content: center; ' : 'flex-shrink: 0; ') + 'display: inline-flex; align-items: center; gap: 8px; border: none; padding: 12px 20px; border-radius: 999px; font-size: 14.5px; font-weight: 600; box-shadow: 0 3px 10px rgba(11,122,75,0.25);'
       + (limitReached ? 'background:#EAE5D9;color:#9AA39C;cursor:not-allowed;box-shadow:none;' : 'background:#0B7A4B;color:#fff;cursor:pointer;');
     return {
       agentTabs, agentCards,
@@ -2507,8 +3149,8 @@ class Component extends DCLogic {
       usedSlots, agentLimit: limit, limitReached, limitNotReached: !limitReached,
       planUsageText: `${usedSlots} of ${limit} agent${limit !== 1 ? 's' : ''} used`,
       createBtnStyle,
-      createBtnTitle: limitReached ? 'You have reached the Free plan limit. Upgrade to create more agents.' : '',
-      yourAgentsPlanBadge: (this.state.planTier || 'free') === 'pro' ? 'Pro plan' : 'Free plan',
+      createBtnTitle: limitReached ? 'You have reached the Starter plan limit. Upgrade to create more agents.' : '',
+      yourAgentsPlanBadge: (this.state.planTier || 'free') === 'pro' ? 'Growth plan' : 'Starter plan',
       agentLimitPlural: limit !== 1 ? 's' : '',
     };
   }
@@ -2560,8 +3202,8 @@ class Component extends DCLogic {
       monthlyBtnStyle: toggleBase + (!annual ? 'background:#16C47F;color:#07130D;' : 'background:transparent;color:#9FB0A6;'),
       annualBtnStyle: toggleBase + (annual ? 'background:#16C47F;color:#07130D;' : 'background:transparent;color:#9FB0A6;'),
       annualBadgeStyle: 'font-size:11px;font-weight:700;padding:1px 8px;border-radius:20px;' + (annual ? 'background:rgba(7,19,13,0.16);color:#07130D;' : 'background:rgba(22,196,127,0.16);color:#16C47F;'),
-      proPrice: annual ? '₦36,000' : '₦45,000',
-      proSub: annual ? 'billed ₦432,000/yr' : 'billed monthly · cancel anytime',
+      proPrice: annual ? '₦63' : '₦79',
+      proSub: annual ? 'billed ₦756/yr' : 'billed monthly · cancel anytime',
       fullWidthBtn: { style: { width: '100%' } },
     };
   }
@@ -2678,12 +3320,20 @@ class Component extends DCLogic {
         ? 'flex: 1; min-width: 0; background: #F5F2EB; padding: 20px 16px 88px;'
         : 'flex: 1; min-width: 0; background: #F5F2EB; padding: 30px 38px 48px;',
       profileMenuOpen: !!this.state.profileMenuOpen,
+      mobileNavOpen: !!this.state.mobileNavOpen,
+      toggleMobileNav: this.toggleMobileNav,
+      closeMobileNav: this.closeMobileNav,
       toggleProfileMenu: this.toggleProfileMenu,
       goProfileFromMenu: this.goProfileFromMenu,
       goSettingsFromMenu: this.goSettingsFromMenu,
       signOutFromMenu: this.signOutFromMenu,
       goSignup: this.go('signup'), goOnboarding: this.go('onboarding'), goBuilder: this.go('builder'), goDashboard: this.go('dashboard'), goLanding: this.go('landing'),
       goMonitor: this.go('monitor'), goEntry: this.go('entry'), goDemo: this.go('mobilechat'), startOnboarding: this.startOnboarding, goAgentsEmpty: this.goAgentsEmpty,
+      goProduct: this.go('product'), goPricingPage: this.go('pricingpage'), goCustomersPage: this.go('customerspage'),
+      isProduct: s === 'product', isPricingPage: s === 'pricingpage', isCustomersPage: s === 'customerspage',
+      navProductStyle: 'color:' + (s === 'product' ? '#F5F2EB' : '#9FB0A6') + ';font-size:14px;text-decoration:none;font-weight:' + (s === 'product' ? '600' : '400') + ';cursor:pointer;background:none;border:none;',
+      navPricingStyle: 'color:' + (s === 'pricingpage' ? '#F5F2EB' : '#9FB0A6') + ';font-size:14px;text-decoration:none;font-weight:' + (s === 'pricingpage' ? '600' : '400') + ';cursor:pointer;background:none;border:none;',
+      navCustomersStyle: 'color:' + (s === 'customerspage' ? '#F5F2EB' : '#9FB0A6') + ';font-size:14px;text-decoration:none;font-weight:' + (s === 'customerspage' ? '600' : '400') + ';cursor:pointer;background:none;border:none;',
       goSignin: this.go('signin'), goForgotPw: this.go('forgotpw'),
       requestReset: this.requestReset, backToSignin: this.backToSignin,
       isSignin: s === 'signin', isForgotPw: s === 'forgotpw',
